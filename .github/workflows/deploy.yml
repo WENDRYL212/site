@@ -1,0 +1,24 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Substitua "main" pela branch que você usa
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Pages
+      uses: actions/setup-pages@v2
+
+    - name: Build and Deploy
+      run: |
+        mkdir output
+        cp -r * output/
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
